@@ -5,7 +5,9 @@ const HeroController = require('../controllers/Hero.controller');
 const ImageController = require('../controllers/Image.controller');
 const { getHeroInstance, validateHero } = require('../middlewares/hero.mv');
 const pagination = require('../middlewares/pagination.mv');
+const { findSuperpower } = require('../middlewares/getsuperpowers.mv');
 const {STATIC_PATH} = require('../config/path.config'); 
+
 
 const heroRouter = Router();
 
@@ -22,11 +24,13 @@ const upload = multer({storage});
 
 
 //heroRouter.post('/', validateHero, HeroController.createHero);
-heroRouter.post('/', upload.single('heroesImg'), validateHero, HeroController.createHero);
+heroRouter.post('/', upload.single('heroesImg'), findSuperpower, validateHero, HeroController.createHero);
 heroRouter.get('/', pagination, HeroController.findAll);
 heroRouter.get('/:id', getHeroInstance, HeroController.findOneByPk);
 heroRouter.put('/:id', upload.single('heroesImg'), HeroController.updateHero);
 heroRouter.delete('/:id', HeroController.deleteHero);
+heroRouter.get('/:id/powers', HeroController.getHeroWithPowers);
+
 
 //Image
 //heroRouter.post('/:id/image', getHeroInstance, upload.single('heroesImg'), ImageController.createHeroImage);

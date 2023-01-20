@@ -11,6 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       heroId: {
+        field: 'hero_id',
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -22,8 +23,8 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      powerId: {
-        field: 'power_id',
+      superpowerId: {
+        field: 'superpower_id',
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -34,6 +35,14 @@ module.exports = {
         },
         onDelete: 'cascade',
         onUpdate: 'cascade'
+      },
+      createdAt: {
+        field: 'created_at',
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        field: 'updated_at',
+        type: Sequelize.DATE
       }
      })
   },

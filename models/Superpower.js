@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Superpower.belongsToMany(models.Hero, {
         through: 'powers_to_heroes',
-        foreingKey: 'powerId'
+        foreingKey: 'superpower_id'
       });
     }
   }

@@ -13,7 +13,7 @@ module.exports.createPower = async (req, res, next) => {
 
 module.exports.addPowerForHero= async (req, res, next) => {
     try{
-        /*
+        /**/
         const {params:{id, powerId}} = req;
         const heroInstance = await Hero.findByPk(id);
         const powerInstance = await Superpower.findByPk(powerId);
@@ -21,13 +21,18 @@ module.exports.addPowerForHero= async (req, res, next) => {
         const {dataValues:{superpower}} = powerInstance;
         const result = heroInstance.addSuperpower(powerInstance);
         return res.status(200).send(`Superhero ${nickname} get new superpower '${superpower}'`)
-*/
-        const {heroInstance, params:{id, powerId}} = req;
-        const powerInstance = await Superpower.findByPk(powerId);
-        const {dataValues:{nickname}} = heroInstance;
-        const {dataValues:{superpower}} = powerInstance;
-        const result = heroInstance.addSuperpower(powerInstance);
-        return res.status(200).send(`Superhero ${nickname} get new superpower '${superpower}'`)
+
+    //     const {heroInstance, params:{id, powerId}} = req;
+    //     const powerInstance = await Superpower.findByPk(powerId);
+
+    //      //const {dataValues:{nickname}} = heroInstance;
+    //      //const {dataValues:{superpower}} = powerInstance;
+    //     const result = heroInstance.addSuperpower(powerInstance);
+    //  //console.log(result)
+
+    //     return res.status(200).send(result)
+        
+    //   //  return res.status(200).send(`Superhero ${nickname} get new superpower '${superpower}'`)
     } catch (error) {
         next(error)
     }

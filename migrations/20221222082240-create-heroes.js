@@ -24,14 +24,6 @@ module.exports = {
       cathPhrase: {
         field: 'cath_phrase',
         type: Sequelize.STRING
-      },
-      createdAt: {
-        field: 'created_at',
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        field: 'updated_at',
-        type: Sequelize.DATE
       }
     });
   },

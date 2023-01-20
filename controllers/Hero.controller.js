@@ -1,4 +1,4 @@
-const {Hero, Image} = require('../models');
+const {Hero, Image, Superpower} = require('../models');
 
 
 // module.exports.createHero = async (req, res, next) => {
@@ -14,7 +14,7 @@ const {Hero, Image} = require('../models');
 
 module.exports.createHero = async (req, res, next) => {
     try{
-        const {body, file} = req;
+        const {body, file, superpower} = req;
         if(file) {
             const createdHero = await Hero.create(body);
 
@@ -25,7 +25,26 @@ module.exports.createHero = async (req, res, next) => {
                 imagePath: filename,
                 heroId: id
             });
+            return res.status(201).send(createdHero);  
+                                      
+        }
+        if(superpower) {
+            const createdHero = await Hero.create(body);
+            const result = createdHero.addSuperpower(superpower);
             return res.status(201).send(createdHero);
+        }
+        if(superpower && file) {                       
+            const createdHero = await Hero.create(body);    //проверить
+
+            const {dataValues:{id}} = createdHero;
+            const {filename} = file;
+
+            const updated = await Image.create({ 
+                imagePath: filename,
+                heroId: id
+            });
+            const result = createdHero.addSuperpower(superpower);
+            return res.status(201).send(result);
         }
         else {
             const {body} = req;
@@ -51,6 +70,10 @@ module.exports.findAll = async (req, res, next) => {
         next(error)
     }
 }
+
+
+
+
 
 module.exports.findOneByPk = async (req, res, next) => {
     try{
@@ -137,3 +160,15 @@ module.exports.deleteHero = async (req, res, next) => {
 //removeChild - магический метод, removeUser
 //уничтожает связь между группой и юзером например
 
+
+module.exports.getHeroWithPowers = async(req, res, next) => {   //показать героя по id со всеми его силами
+    try {
+        const {params:{id}} = req;
+        const heroWithPowers = await Hero.findByPk(id, {
+            include: [Superpower] 
+        })
+        res.status(200).send(heroWithPowers);
+    } catch(error) {
+        next(error);
+    }
+}

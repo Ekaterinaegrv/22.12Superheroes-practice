@@ -1,1 +1,2 @@
-PUT http://localhost:3000/api/powers/3/2 HTTP/1.1
+PUT http://localhost:3000/api/powers/1/1 HTTP/1.1
+                            # heroId/powerId
