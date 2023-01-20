@@ -33,19 +33,19 @@ module.exports.createHero = async (req, res, next) => {
             const result = createdHero.addSuperpower(superpower);
             return res.status(201).send(createdHero);
         }
-        if(superpower && file) {                       
-            const createdHero = await Hero.create(body);    //проверить
+        // if(superpower && file) {                       
+        //     const createdHero = await Hero.create(body);    //проверить
 
-            const {dataValues:{id}} = createdHero;
-            const {filename} = file;
+        //     const {dataValues:{id}} = createdHero;
+        //     const {filename} = file;
 
-            const updated = await Image.create({ 
-                imagePath: filename,
-                heroId: id
-            });
-            const result = createdHero.addSuperpower(superpower);
-            return res.status(201).send(result);
-        }
+        //     const updated = await Image.create({ 
+        //         imagePath: filename,
+        //         heroId: id
+        //     });
+        //     const result = createdHero.addSuperpower(superpower);
+        //     return res.status(201).send(result);
+        // }
         else {
             const {body} = req;
             const createdHero = await Hero.create(body);

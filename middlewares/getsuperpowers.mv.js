@@ -4,6 +4,7 @@ module.exports.findSuperpower = async(req, res, next) => {
     try {
         const {body: {superpower} }= req;
         if(superpower) {
+            console.log(superpower)
           
             for (let i = 0; i < superpower.length; i++) {
                 const power = await Superpower.findOne({
@@ -11,7 +12,6 @@ module.exports.findSuperpower = async(req, res, next) => {
                          superpower: superpower[i]
                         }
                   })
-                console.log(power)
 
                   //если существует - то переходит сюда, но если не существует такая сила - тоже сюда кидает почему-то
 
@@ -22,10 +22,12 @@ module.exports.findSuperpower = async(req, res, next) => {
                   } 
                   else {
                     //если нет такой силы - создаем силу
-                    console.log(`Not have${power}`)
-                    req.superpower = await Superpower.create(superpower);                 
+                    console.log(`Not have$`)
+                    const newPower = await Superpower.create({"superpower": "running"});   
+                    console.log(newPower);
+                //    req.superpower = newPower;              
                   }
-                next();
+              //  next();
          }
 
         }

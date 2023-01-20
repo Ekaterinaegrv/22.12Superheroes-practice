@@ -2,11 +2,11 @@ POST http://localhost:3000/api/heroes HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "Hulk",
-    "realName": "Ро́берт Брюс Бэ́ннер",
+    "nickname": "Hulker",
+    "realName": "Ро́берт",
     "originDescription": "супергерой комиксов издательства Marvel Comics",
     "cathPhrase": "I am Hulk",
-    "superpower": ["flying"]
+    "superpower": ["running"]
 
 }
 
