@@ -1,1 +1,2 @@
-DELETE http://localhost:3000/api/heroes/image/7 HTTP/1.1
+DELETE http://localhost:3000/api/heroes/image/2 HTTP/1.1
+                         #/heroes/image/:imageId'

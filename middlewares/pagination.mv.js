@@ -4,7 +4,7 @@ module.exports = async (req, res, next) =>{
         const {query:{limit, offset}} = req;
         if(!limit && !offset) {
             req.pagination = {
-                limit: 60,
+                limit: 5,
                 offset: 0
             }
         } else {

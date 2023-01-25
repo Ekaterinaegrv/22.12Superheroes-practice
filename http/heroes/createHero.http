@@ -2,11 +2,11 @@ POST http://localhost:3000/api/heroes HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "Hulker",
-    "realName": "Ро́берт",
+    "nickname": "Wonder Woman",
+    "realName": "Принцесса Диана из Темискиры",
     "originDescription": "супергерой комиксов издательства Marvel Comics",
-    "cathPhrase": "I am Hulk",
-    "superpower": ["running"]
+    "cathPhrase": "I am Wonder Woman",
+    "superpower": ["flying"]
 
 }
 

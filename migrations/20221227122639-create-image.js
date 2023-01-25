@@ -15,12 +15,6 @@ module.exports = {
         allowNull: false,
         onDelete: 'cascade',
         onUpdate: 'cascade'
-      },
-      heroId: {
-        field: "hero_id",
-        type: Sequelize.STRING,
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
       }
     });
   },

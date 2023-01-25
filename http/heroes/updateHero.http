@@ -1,14 +1,20 @@
-PUT http://localhost:3000/api/heroes/11 HTTP/1.1
+PUT http://localhost:3000/api/heroes/3 HTTP/1.1
 Content-Type: application/json
 
 {
-    "nickname": "BlackWidow"
+    "nickname": "Batman",
+    "realName": "Брюс Уэйн",
+    "originDescription": "супергерой комиксов издательства Marvel Comics / DC Comics.",
+    "cathPhrase": "I am Batmanl",
+    "superpower": ["Эхолокация"]
+
+  
 }
 
+#    "nickname": "Флэш",
+#     "realName": "Барт Аллен",
+#     "originDescription": "супергерой комиксов издательства Marvel Comics / DC Comics.",
+#     "cathPhrase": "I am Флэш",
+#     "superpower": ["flying"]
 
-# {
-#     "nickname": "Black Widow",
-#     "real_name": "Ната́лья Альяновна Ро́манова",
-#     "origin_description": "Изначально, Наташа Романофф изображена как русская шпионка и опытный боец рукопашного боя, обученная с детства в специальной академии «Красная комната». В конце концов она присоединяется к контртеррористическому агентству «Щ.И.Т.» и становится ключевым членом команды «Мстители». Когда Танос испепеляет половину жизни во Вселенной, Наташа становится лидером команды «Мстители». Наташа, вместе со Стивом Роджерсом собирает команду вновь и отменяет действия Таноса, пожертвовав собственной жизнью ради получения одного из Камней Бесконечности — Камня Души.",
-#     "cath_phrase": "I am Black Widow"
-# }
+#   "superpower": ["flying"]

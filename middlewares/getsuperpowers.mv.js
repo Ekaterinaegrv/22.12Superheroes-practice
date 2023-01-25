@@ -13,27 +13,22 @@ module.exports.findSuperpower = async(req, res, next) => {
                         }
                   })
 
-                  //если существует - то переходит сюда, но если не существует такая сила - тоже сюда кидает почему-то
-
                   if(power) {
-                    //если нашли силу - кладем в реквест
-                    console.log(`have${power}`)
+                    console.log(`Have in db ${power}`)
                     req.superpower = power;
                   } 
                   else {
-                    //если нет такой силы - создаем силу
-                    console.log(`Not have$`)
-                    const newPower = await Superpower.create({"superpower": "running"});   
+                    console.log(`Not have that power in db`)
+                    const newPower = await Superpower.create({"superpower": `${superpower}`});   
                     console.log(newPower);
-                //    req.superpower = newPower;              
+                    req.superpower = newPower;              
                   }
-              //  next();
+              next();
          }
 
         }
         else{  
-            console.log('Else')   
-//next();
+            next();
         }
        
     } catch(error) {

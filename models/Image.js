@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
 
-    },
-    heroId: {
-      field: "hero_id",
-      type: DataTypes.STRING
     }
   }, {
    

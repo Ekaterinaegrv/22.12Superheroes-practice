@@ -1,17 +1,5 @@
 const {Hero, Image, Superpower} = require('../models');
 
-
-// module.exports.createHero = async (req, res, next) => {
-//     try{
-//         const {body} = req;
-//         const createdHero = await Hero.create(body);
-       
-//         return res.status(201).send(createdHero);
-//     } catch (error) {
-//         next(error)
-//     }
-// }
-
 module.exports.createHero = async (req, res, next) => {
     try{
         const {body, file, superpower} = req;
@@ -33,19 +21,19 @@ module.exports.createHero = async (req, res, next) => {
             const result = createdHero.addSuperpower(superpower);
             return res.status(201).send(createdHero);
         }
-        // if(superpower && file) {                       
-        //     const createdHero = await Hero.create(body);    //проверить
+        if(superpower && file) {                       
+            const createdHero = await Hero.create(body);    
 
-        //     const {dataValues:{id}} = createdHero;
-        //     const {filename} = file;
+            const {dataValues:{id}} = createdHero;
+            const {filename} = file;
 
-        //     const updated = await Image.create({ 
-        //         imagePath: filename,
-        //         heroId: id
-        //     });
-        //     const result = createdHero.addSuperpower(superpower);
-        //     return res.status(201).send(result);
-        // }
+            const updated = await Image.create({ 
+                imagePath: filename,
+                heroId: id
+            });
+            const result = createdHero.addSuperpower(superpower);
+            return res.status(201).send(result);
+        }
         else {
             const {body} = req;
             const createdHero = await Hero.create(body);
@@ -88,8 +76,7 @@ module.exports.findOneByPk = async (req, res, next) => {
 
 module.exports.updateHero = async (req, res, next) => { 
     try{
-        const {params: {id}, body, file} = req;
-       // const {heroInstance} = req;
+        const {params: {id}, body, file, superpower, heroInstance} = req;
       if(file) {
         const {filename} = file;
         const updatedHero = await Hero.update(body, {
@@ -104,40 +91,23 @@ module.exports.updateHero = async (req, res, next) => {
                 }
             });
     
-        return res.status(201).send(`Superhero ${id} was updated from if`);
+        return res.status(201).send(`Superhero ${id} was updated`);
       } else {
         const result = await Hero.update(body, {
                             where: {
                                 id
                             }
             });
-        return res.status(201).send(`Superhero ${id} was updated from else`);
+        
+       console.log(heroInstance)
+       heroInstance.addSuperpower(superpower);
+       return res.status(201).send(`Superhero ${id} was updated`);
       }
     } catch (error) {
         next(error)
     }
 }
 
-/* work var
-module.exports.updateHero = async (req, res, next) => {
-    try{
-        const {params: {id}, body} = req;
-        const result = await Hero.update(body, {
-                    where: {
-                        id
-                    }
-    });
-    if(result>0) {
-        return res.status(201).send(`Superhero ${id} was updated`);
-    }  else {
-        return res.status(400).send(`Superhero ${id} does not exist`);
-
-    }
-    } catch (error) {
-        next(error)
-    }
-}
-*/
 
 module.exports.deleteHero = async (req, res, next) => {
     try{
@@ -156,9 +126,8 @@ module.exports.deleteHero = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-} //delete from Users where
-//removeChild - магический метод, removeUser
-//уничтожает связь между группой и юзером например
+} 
+
 
 
 module.exports.getHeroWithPowers = async(req, res, next) => {   //показать героя по id со всеми его силами
